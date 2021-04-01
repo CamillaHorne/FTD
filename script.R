@@ -19,3 +19,9 @@ data['GME Allocation'] <- sapply(data$SYMBOL, function(x) {
 })
 
 write.csv(data, 'result.csv', row.names = FALSE)
+
+ftd <- data[data$QUANTITY..FAILS. >= 100000,]
+write.csv(ftd, 'result_min100000.csv', row.names = FALSE)
+
+ftd.over1 <- data[data$QUANTITY..FAILS. >= 100000 & (is.na(data$`GME Allocation`) | data$`GME Allocation` > 1),]
+write.csv(ftd.over1, 'result_min100000_1_percent.csv', row.names = FALSE)
